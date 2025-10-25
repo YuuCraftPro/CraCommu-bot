@@ -20,13 +20,14 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
   console.log(`${client.user.tag} が起動しました`);
+  client.user.setActivity('サーバー監視中', { type: 'PLAYING' }); // ← ここが追加された部分！
 });
 
 client.on('messageCreate', message => {
   if (!message.content.startsWith('!') || message.author.bot) return;
 
   const args = message.content.slice(1).trim().split(/ +/);
-  const commandName = args.shift().toLowerCase();sv
+  const commandName = args.shift().toLowerCase();
 
   const command = client.commands.get(commandName);
   if (!command) return;
